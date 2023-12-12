@@ -1,0 +1,33 @@
+﻿@model BookEF[]
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h1>Search Results:</h1>
+
+@if(Model.Length == 0)
+{
+    <p>No Results</p>
+}
+else
+{
+    <ul>
+        @foreach (var book in Model)
+        {
+            <li><a href="@Url.Action("Index", "Book", new {id = book.Id})">@book.TitleOf</a>    @book.PriceOf $</li>
+        }
+    </ul>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

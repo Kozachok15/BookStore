@@ -1,0 +1,21 @@
+﻿body {
+    padding: 0px 350px 0px 300px;
+}
+
+.SingleBook{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top: 50px;
+}
+
+.SingleBookA{
+    font-size: 28px;
+    color: black;
+    width: 30%;
+}
+
+.SingleBookSpan {
+    font-size: 28px;
+    width: 10%;
+}

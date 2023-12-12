@@ -1,0 +1,94 @@
+﻿@model OrderModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h1>Cart</h1>
+
+<table style="width: 70%;
+            border-collapse: collapse;
+            margin-bottom: 20px;">
+    <thead>
+        <tr>
+            <th style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd" scope="col">№</th>
+            <th style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd" scope="col">Author</th>
+            <th style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd" scope="col">Title</th>
+            <th style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd" scope="col">Count</th>
+            <th style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd" scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Items.Length; i++)
+        {
+            <tr>
+                <td style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd">
+                    @(i + 1)
+                </td>
+                <td style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd">
+                    @Model.Items[i].Author
+                </td>
+                <td style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd">
+                    @Model.Items[i].Title
+                </td>
+                <td style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd">
+                    @Model.Items[i].Count
+                </td>
+                <td style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd">
+                    @Model.Items[i].Price
+                </td>
+                @{
+                    /*
+                    <td>
+                    <form action="@Url.Action("RemoveItem", "Order")" method="post">
+                    <input type="hidden" name="bookId" value="@Model.Items[i].BookId" />
+                    <button type="submit">Delete</button>
+                    </form>
+                    </td>
+                    */
+                }
+                
+            </tr>
+        }
+    </tbody>
+
+
+    <tfoot>
+        <tr>
+            <td style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd" colspan="3">
+                In Sum:
+            </td>
+            <td style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd">
+                @Model.TotalCount
+            </td>
+            <td style="padding: 12px;
+                       text-align: left;
+                       border: 1px solid #ddd">
+                @Model.TotalPrice
+            </td>
+        </tr>
+    </tfoot>
+</table>
