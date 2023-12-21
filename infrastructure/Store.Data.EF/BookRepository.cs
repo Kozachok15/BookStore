@@ -10,48 +10,48 @@ namespace Store.Data.EF
 {
     public class BookRepository : IBookRepository
     {
-        public BookEF[] GetAllBooks()
+        public async Task<BookEF[]> GetAllBooks()
         {
             using(var context = new StoreContext())
             {
-                return context.Books.Include(book => book.Publisher).Include(book => book.Author).ToArray();
+                return await context.Books.Include(book => book.Publisher).Include(book => book.Author).ToArrayAsync();
             }
         }
 
-        public BookEF[] GetAllByIds(IEnumerable<int> bookIds)
+        public async Task<BookEF[]> GetAllByIds(IEnumerable<int> bookIds)
         {
             using (var context = new StoreContext())
             {
-                return context.Books.Include(book => book.Publisher).Include(book => book.Author)
-                                    .Where(book => bookIds.Contains(book.Id)).ToArray();
+                return await context.Books.Include(book => book.Publisher).Include(book => book.Author)
+                                    .Where(book => bookIds.Contains(book.Id)).ToArrayAsync();
             }
         }
 
-        public BookEF[] GetAllByIsbn(string isbn)
+        public async Task<BookEF[]> GetAllByIsbn(string isbn)
         {
             using(var context = new StoreContext())
             {
-                return context.Books.Include(book => book.Publisher).Include(book => book.Author)
-                                    .Where(book => book.IsbnOf == isbn).ToArray();
+                return await context.Books.Include(book => book.Publisher).Include(book => book.Author)
+                                    .Where(book => book.IsbnOf == isbn).ToArrayAsync();
             }
-        }   
+        }
 
-        public BookEF[] GetAllByTitleOrAuthor(string titleOrAuthor)
+        public async Task<BookEF[]> GetAllByTitleOrAuthor(string titleOrAuthor)
         {
             using (var context = new StoreContext())
             {
-                var books = context.Books.Include(book => book.Publisher).Include(book => book.Author)
-                                    .Where(book => book.Author.FullName.Contains(titleOrAuthor) || book.TitleOf.Contains(titleOrAuthor)).ToArray();
+                var books = await context.Books.Include(book => book.Publisher).Include(book => book.Author)
+                                    .Where(book => book.Author.FullName.Contains(titleOrAuthor) || book.TitleOf.Contains(titleOrAuthor)).ToArrayAsync();
 
                 return books;
             }
         }
 
-        public BookEF GetById(int id)
+        public async Task<BookEF> GetById(int id)
         {            
             using(var context = new StoreContext())
             {
-                var book = context.Books.Where(book => book.Id == id).Include(book => book.Publisher).Include(book => book.Author).Single();
+                var book = await context.Books.Where(book => book.Id == id).Include(book => book.Publisher).Include(book => book.Author).SingleAsync();
                 return book;
             }
         }

@@ -12,9 +12,9 @@ namespace Store.Web.Controllers
             this.bookService = bookService;
         }
 
-        public IActionResult Index(int id)
+        public async Task<IActionResult> Index(int id)
         {
-            BookEF book = bookService.GettBookByID(id);
+            BookEF book = await bookService.GettBookByID(id);
             return View("Index", book);
         }
     }

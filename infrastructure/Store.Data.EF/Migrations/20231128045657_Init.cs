@@ -9,7 +9,7 @@ namespace Store.Data.EF.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            /*migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "Author",
                 columns: table => new
                 {
@@ -149,12 +149,12 @@ namespace Store.Data.EF.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_client_id",
                 table: "Orders",
-                column: "client_id");*/
+                column: "client_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            /*migrationBuilder.DropTable(
+            migrationBuilder.DropTable(
                 name: "OrderBook");
 
             migrationBuilder.DropTable(
@@ -170,7 +170,7 @@ namespace Store.Data.EF.Migrations
                 name: "Publisher");
 
             migrationBuilder.DropTable(
-                name: "Client");*/
+                name: "Client");
         }
     }
 }

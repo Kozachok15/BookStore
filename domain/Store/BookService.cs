@@ -17,22 +17,22 @@ namespace Store
             this.booksRepository = bookRepository;
         }
 
-        public BookEF[] GettAllByQuery(string query)
-        {
+        public async Task<BookEF[]> GettAllByQuery(string query)
+        {            
             if (Book.IsIsbn(query))
-                return booksRepository.GetAllByIsbn(query);
+                return await booksRepository.GetAllByIsbn(query);
 
-            return booksRepository.GetAllByTitleOrAuthor(query);
+            return await booksRepository.GetAllByTitleOrAuthor(query);
         }
 
-        public BookEF[] GettAllBooks()
+        public async Task<BookEF[]> GettAllBooks()
         {
-            return booksRepository.GetAllBooks();
+            return await booksRepository.GetAllBooks();
         }
 
-        public BookEF GettBookByID(int id)
+        public async Task<BookEF> GettBookByID(int id)
         {
-            return booksRepository.GetById(id);
+            return await booksRepository.GetById(id);
         }
 
     }

@@ -17,15 +17,9 @@ namespace Store
             get { return items; }
         }
 
-        public int TotalCount
-        {
-            get { return items.Sum(item => item.Count); }
-        }
+        public int TotalCount => items.Sum(item => item.Count);
 
-        public decimal TotalPrice
-        {
-            get { return items.Sum(item => item.Count * item.Price); }
-        }
+        public decimal TotalPrice => items.Sum(item => item.Count * item.Price);
 
         public Order(int id, IEnumerable<OrderItem> items)
         {   

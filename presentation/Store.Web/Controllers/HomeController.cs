@@ -13,9 +13,9 @@ namespace Store.Web.Controllers
             this.bookService = bookService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var books = bookService.GettAllBooks();
+            var books = await bookService.GettAllBooks();
             return View(books);
         }        
 

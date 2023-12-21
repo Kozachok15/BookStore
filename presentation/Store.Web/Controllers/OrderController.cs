@@ -16,12 +16,12 @@ namespace Store.Web.Controllers
             this.orderRepository = orderRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             if (HttpContext.Session.TryGetCart(out Cart cart))
             {
                 var order = orderRepository.GetByID(cart.OrderId);
-                OrderModel model = Map(order);
+                OrderModel model = await Map(order);
                 return View(model);
             }
             else
@@ -32,10 +32,10 @@ namespace Store.Web.Controllers
             
         }
 
-        private OrderModel Map(Order order)
+        private async Task<OrderModel> Map(Order order)
         {
             var bookIds = order.Items.Select(item => item.BookId);
-            var books = bookRepository.GetAllByIds(bookIds);
+            var books = await bookRepository.GetAllByIds(bookIds);
             var itemModels = from item in order.Items
                              join book in books on item.BookId equals book.Id
                              select new OrderItemModel
@@ -53,10 +53,11 @@ namespace Store.Web.Controllers
                 TotalCount = order.TotalCount,
                 TotalPrice = order.TotalPrice,
             };
+            return null;
         }
 
-        public IActionResult AddItem(int id)
-        {            
+        public async Task<IActionResult> AddItem(int id)
+        {
             Order order;
             Cart cart;
 
@@ -70,7 +71,7 @@ namespace Store.Web.Controllers
                 cart = new Cart(order.Id);
             }
 
-            var book = bookRepository.GetById(id);
+            var book = await bookRepository.GetById(id);
             order.AddItem(book, 1);
             orderRepository.Update(order);
 
@@ -80,6 +81,9 @@ namespace Store.Web.Controllers
             HttpContext.Session.Set(cart);
 
             return RedirectToAction("Index", "Book", new {id});
+            
+
+            return null;
         }
     }
 }
