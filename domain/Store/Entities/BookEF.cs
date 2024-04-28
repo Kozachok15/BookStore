@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Store.Entities
 {
@@ -22,7 +23,8 @@ namespace Store.Entities
 
         public AuthorEF Author { get; set; } = null!;
         public PublisherEF Publisher { get; set; } = null!;
-        public ICollection<OrderBookEF> OrderBooks { get; set; }
+        public ICollection<OrderBookEF> OrderBooks { get; set; }        
+
 
     }
 }

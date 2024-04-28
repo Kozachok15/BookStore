@@ -35,7 +35,7 @@ namespace Store.Web.Controllers
         private async Task<OrderModel> Map(Order order)
         {
             var bookIds = order.Items.Select(item => item.BookId);
-            var books = await bookRepository.GetAllByIds(bookIds);
+            var books = await bookRepository.GetAllBooksByIds(bookIds);
             var itemModels = from item in order.Items
                              join book in books on item.BookId equals book.Id
                              select new OrderItemModel
@@ -71,7 +71,7 @@ namespace Store.Web.Controllers
                 cart = new Cart(order.Id);
             }
 
-            var book = await bookRepository.GetById(id);
+            var book = await bookRepository.GetBookById(id);
             order.AddItem(book, 1);
             orderRepository.Update(order);
 

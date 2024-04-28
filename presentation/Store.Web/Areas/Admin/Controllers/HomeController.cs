@@ -2,8 +2,9 @@
 using Store.Web.Models;
 using System.Diagnostics;
 
-namespace Store.Web.Controllers
+namespace Store.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class HomeController : Controller
     {
         private readonly BookService bookService;
@@ -22,7 +23,7 @@ namespace Store.Web.Controllers
         public async Task<IActionResult> IndexAdmin()
         {
             var books = await bookService.GettAllBooks();
-            return View("IndexAdmin",books);
+            return View("IndexAdmin", books);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -30,8 +31,5 @@ namespace Store.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
-
     }
 }

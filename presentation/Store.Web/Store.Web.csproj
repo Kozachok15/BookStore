@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\infrastructure\Store.Data.EF\Store.Data.EF.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Builder;
 using Store;
 using Store.Data.EF;
+using Store.Web.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,8 +38,23 @@ app.UseAuthorization();
 
 app.UseSession();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+    name: "Admin",
+    areaName:"Admin",
+    pattern: "Admin/{controller=Home}/{action=Index}");    
+
+    endpoints.MapControllerRoute(
+    name: "areaRoute",
+    pattern: "{area:exists}/{controller}/{action}");
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
+
+
 
 app.Run();

@@ -1,0 +1,27 @@
+﻿@model BookEF[]
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="AllBooks">
+    <h1>Admin View</h1>
+
+    @if (Model.Length == 0)
+    {
+        <p>No Books</p>
+    }
+    else
+    {
+        <dl>
+            @foreach (var book in Model)
+            {
+                <dt class="SingleBook">
+                    <img src="@Url.Content("~/Images/book.png")">
+                    <a class="SingleBookA" href="@Url.Action("Index", "Book", new {id = book.Id})">@book.TitleOf</a>
+                    <span class="SingleBookSpan">@book.PriceOf $</span>
+                </dt>
+            }
+        </dl>
+    }
+</div>
+
