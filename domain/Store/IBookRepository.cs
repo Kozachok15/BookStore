@@ -14,9 +14,9 @@ namespace Store
         Task<BookEF> GetBookById(int id);
         Task<BookEF[]> GetAllBooksByIsbn(string isbn);
         Task<BookEF[]> GetAllBooksByTitleOrAuthor(string titleOrAuthor);
-        void UpdateBookById(int id, string Description, string Title, string Genre, decimal Price);
+        Task UpdateBookById(int id, string Description, string Title, string Genre, decimal Price);
         void AddBook(AuthorEF Author, PublisherEF Publisher, string? Genre, string Title, string Isbn, string? Description, decimal Price);
-        void DeleteBookById(int id);
+        Task DeleteBookById(int id);
         void AddAuthor(string FullName);
         Task<AuthorEF> GetAuthorById(int id);
         Task<PublisherEF> GetPublisherById(int id);

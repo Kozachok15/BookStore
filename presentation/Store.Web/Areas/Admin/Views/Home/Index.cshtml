@@ -4,7 +4,13 @@
 }
 
 <div class="AllBooks">
-    <h1>Admin View</h1>
+    <div>
+        <h1>Admin View</h1>
+        <form action="@Url.Action("AddBook","Home")" method="post">
+            <button style="font-size: 18px; height: 37px; width: 100px; border: solid 1px #c9c9c9;" type="submit">Add Book</button>
+        </form>
+    </div>
+    
 
     @if (Model.Length == 0)
     {
@@ -18,7 +24,21 @@
                 <dt class="SingleBook">
                     <img src="@Url.Content("~/Images/book.png")">
                     <a class="SingleBookA" href="@Url.Action("Index", "Book", new {id = book.Id})">@book.TitleOf</a>
-                    <span class="SingleBookSpan">@book.PriceOf $</span>
+
+                    <div style="display:flex">
+
+                        <span class="SingleBookSpan" style="margin-right: 30px">@book.PriceOf $</span>
+
+                        <div>
+                            <form action="@Url.Action("DeleteBook","Home", new {id = book.Id})" method="post">
+                                <button style="font-size: 18px; height: 37px; width: 100px; border: solid 1px #c9c9c9;" type="submit">Delete</button>
+                            </form>
+                            <form action="@Url.Action("UpdateBook", "Home", new {id = book.Id})" method="post">
+                                <button style="font-size: 18px; height: 37px; width: 100px; border: solid 1px #c9c9c9;" type="submit">Update</button>
+                            </form>
+                        </div>                        
+                    </div>
+                    
                 </dt>
             }
         </dl>

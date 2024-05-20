@@ -37,12 +37,12 @@ namespace Store
             return await booksRepository.GetBookById(id);
         }
 
-        public void DeleteBook(int id)
+        public async Task DeleteBook(int id)
         {
-            booksRepository.DeleteBookById(id);
+            await booksRepository.DeleteBookById(id);
         }
 
-        public async void AddBook(string? Genre, string Title, string Isbn, string? Description, decimal Price, string AuthorFullName)
+        public async Task AddBook(string? Genre, string Title, string Isbn, string? Description, decimal Price, string AuthorFullName)
         {
             PublisherEF publisher = await booksRepository.GetPublisherById(1);
             booksRepository.AddAuthor(AuthorFullName);
@@ -50,9 +50,9 @@ namespace Store
             booksRepository.AddBook(author, publisher, Genre, Title, Isbn, Description, Price);
         }
 
-        public void UpdateBook(int id, string Description, string Title, string Genre, decimal Price)
+        public async Task UpdateBook(int id, string Description, string Title, string Genre, decimal Price)
         {
-            booksRepository.UpdateBookById(id, Description, Title, Genre, Price);
+            await booksRepository.UpdateBookById(id, Description, Title, Genre, Price);
         }
 
         public async Task<AuthorEF[]> GetAllAuthors()

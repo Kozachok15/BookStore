@@ -57,7 +57,7 @@ namespace Store.Data.EF
             }
         }
 
-        public async void UpdateBookById(int id, string Description, string Title, string Genre, decimal Price)
+        public async Task UpdateBookById(int id, string Description, string Title, string Genre, decimal Price)
         {
             using (var context = new StoreContext())
             {
@@ -90,7 +90,7 @@ namespace Store.Data.EF
             }
         }
 
-        public async void DeleteBookById(int id)
+        public async Task DeleteBookById(int id)
         {
             using (var context = new StoreContext())
             {

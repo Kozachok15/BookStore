@@ -1,5 +1,5 @@
 ﻿body {
-    padding: 0px 350px 0px 300px;
+    padding: 0 25% 0 20%;
 }
 
 .SingleBook{
@@ -17,5 +17,4 @@
 
 .SingleBookSpan {
     font-size: 28px;
-    width: 10%;
 }

@@ -18,11 +18,5 @@ namespace Store.Web.Areas.Admin.Controllers
             BookEF book = await bookService.GettBookByID(id);
             return View("Index", book);
         }
-
-        public async Task<IActionResult> Update(int id)
-        {
-            BookEF book = await bookService.GettBookByID(id);
-            return View("Index", book);
-        }
     }
 }
