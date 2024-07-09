@@ -22,7 +22,7 @@
             @foreach (var book in Model)
             {
                 <dt class="SingleBook">
-                    <img src="@Url.Content("~/Images/book.png")">
+                    <img src="@Url.Content("~/Images/book.jpg")">
                     <a class="SingleBookA" href="@Url.Action("Index", "Book", new {id = book.Id})">@book.TitleOf</a>
 
                     <div style="display:flex">

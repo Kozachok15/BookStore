@@ -70,11 +70,16 @@ namespace Store.Data.EF
             }
         }
 
-        public async void AddBook(AuthorEF Author, PublisherEF Publisher, string? Genre, string Title, string Isbn, string? Description, decimal Price)
+        public async void AddBook(int AuthorID, int PublisherID, string? Genre, string Title, string Isbn, string Description, decimal Price)
         {
             using (var context = new StoreContext())
             {
-                BookEF book =  new BookEF()
+                string query = $"INSERT INTO Book(author_id, publisher_id, title_of, isbn_of, description_of, price_of, genre_of) VALUES({AuthorID}, {PublisherID}, '{Title}', '{Isbn}', '{Description}', {Price}, '{Genre}')";
+                int execute = await context.Database.ExecuteSqlRawAsync(query);
+
+
+
+                /*BookEF book =  new BookEF()
                 {
                     Author = Author,
                     Publisher = Publisher,
@@ -86,8 +91,13 @@ namespace Store.Data.EF
                 };
 
                 await context.Books.AddAsync(book);
-                await context.SaveChangesAsync();
+                await context.SaveChangesAsync();*/
             }
+
+            /*INSERT INTO Book(author_id, publisher_id, title_of, isbn_of, description_of, price_of, genre_of)
+            VALUES(6, 1, 'Added Book from MSSQL', 'ISBN000000000', 'Added Book from MSSQL Added Book from MSSQL Added Book from MSSQL Added Book from MSSQL', 999.00, 'Test Genre')*/
+
+
         }
 
         public async Task DeleteBookById(int id)
@@ -144,11 +154,11 @@ namespace Store.Data.EF
             }
         }
 
-        public async Task<PublisherEF> GetPublisherById(int id)
+        public async Task<PublisherEF> GetPublisher()
         {
             using (var context = new StoreContext())
             {
-                return await context.Publishers.Where(publisher => publisher.Id == id).SingleAsync();
+                return await context.Publishers.FirstAsync();
             }
         }
 

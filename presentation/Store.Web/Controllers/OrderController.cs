@@ -53,7 +53,6 @@ namespace Store.Web.Controllers
                 TotalCount = order.TotalCount,
                 TotalPrice = order.TotalPrice,
             };
-            return null;
         }
 
         public async Task<IActionResult> AddItem(int id)
@@ -80,10 +79,7 @@ namespace Store.Web.Controllers
 
             HttpContext.Session.Set(cart);
 
-            return RedirectToAction("Index", "Book", new {id});
-            
-
-            return null;
+            return RedirectToAction("Index", "Book", new {id});            
         }
     }
 }

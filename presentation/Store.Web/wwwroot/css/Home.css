@@ -1,20 +1,65 @@
 ﻿body {
-    padding: 0 25% 0 20%;
+    margin: 0;
 }
 
-.SingleBook{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top: 50px;
+.AllBooks {
+    display: flex;
+    justify-content:center;   
+    flex-wrap: wrap;
+    text-align: center;
+    margin: 4% 10% 0 10%;
+    width: 80%;
+    height: 90%;
 }
 
-.SingleBookA{
-    font-size: 28px;
-    color: black;
-    width: 30%;
+.SingleBookLayout {
+    margin-bottom:30px;
+    width: 25%;
 }
 
-.SingleBookSpan {
-    font-size: 28px;
+.SingleBook {
+    display: flex;
+    flex-direction: row;
+    background: #f4f4ff;
+    border: 1px solid #ccc;
+    padding: 15px 0px 25px 10px;
+    width:90%;
+    box-sizing: border-box;
+}
+
+.AllBooks a {
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+}
+
+.SingleBookTitleNAuthor {
+    display: flex;
+    flex-direction: column;
+}
+
+.SingleBookText {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    padding-left: 15px;
+}
+
+
+.SingleBookTitle {
+    font-size:24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.SingleBookAuthor {
+    font-size: 18px;
+}
+
+.SingleBookPrice {
+    padding-left:50%;
+    font-size: 24px;
+    font-weight: 700;
+    color: #6251DD;
 }

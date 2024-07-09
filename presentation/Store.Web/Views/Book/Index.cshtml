@@ -1,29 +1,48 @@
 ﻿@model BookEF
 
-<body style="padding-right: 25%; padding-left: 20%;">
-    <div class="BookImgAuthorPrice" style="margin-top: 100px; display:flex; ">
-        <img src="@Url.Content("~/Images/book.png")">
-        <div style="padding-left: 20%;">
-            <h1 style="font-size: 32px"> @Model.TitleOf</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store - Book</title>
+    <link href="~/css/Book.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="MainContainer">
 
-            <p style="font-size: 20px"> Genre: @Model.GenreOf</p>
-            <p style="font-size: 20px"> Author: @Model.Author.FullName</p>
-            <p style="font-size: 20px"> Publisher: @Model.Publisher.NameOf</p>
-            <p></p>
-            <p style="font-size: 20px">Price: @Model.PriceOf $</p>
+        <div class="Book">
+            <div class="BookImg">
+                <img src="@Url.Content("~/Images/book.jpg")">
+            </div>
+            
+            <div class="BookText">
+
+                <div class="BookTitleNAuthor">
+                    <span class="BookTitle">@Model.TitleOf</span>
+
+                    <span class ="BookAuthor">@Model.Author.FullName</span>
+                </div>
+                
+
+                <div class="BookDescription">
+                    <span>@Model.DescriptionOf</span>
+                </div>
+
+            </div>
+
         </div>
 
-    </div>
+        <div class="BuyForm">
+            <form action="@Url.Action("AddItem","Order")" method="post">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <button type="submit">
+                    <span class="BookPrice">@Model.PriceOf $</span>
+                    <span>In Cart</span>
+                </button>
+            </form>
+        </div>
 
-    <div>
-        <p style="font-size: 24px">@Model.DescriptionOf</p>
-    </div>
-
-    <form action="@Url.Action("AddItem","Order")" method="post">
-        <input type="hidden" name="id" value="@Model.Id" />
-        <button style="width:100px; height: 40px; font-size: 20px" type="submit">In Cart</button>
-    </form>
+        
+    </div>    
 </body>
-
-
-

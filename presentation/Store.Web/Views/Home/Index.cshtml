@@ -3,23 +3,45 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="AllBooks">
-    @if (Model.Length == 0)
-    {
-        <p>No Books</p>
-    }
-    else
-    {
-        <dl>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store - Home</title>
+    <link href="~/css/Home.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="AllBooks">
+        @if (Model.Length == 0)
+        {
+            <p>No Books</p>
+        }
+        else
+        {
             @foreach (var book in Model)
             {
-                <dt class="SingleBook">
-                    <img src="@Url.Content("~/Images/book.png")">
-                    <a class="SingleBookA" href="@Url.Action("Index", "Book", new {id = book.Id})">@book.TitleOf</a>
-                    <span class="SingleBookSpan">@book.PriceOf $</span>
-                </dt>
-            }
-        </dl>
-    }
-</div>
+                <div class="SingleBookLayout">
+                    <a class="SingleBook" href="@Url.Action("Index", "Book", new {id = book.Id})">
 
+                        <div>
+                            <img src="@Url.Content("~/Images/book.jpg")">
+                        </div>
+
+                        <div class="SingleBookText">
+                            <div class="SingleBookTitleNAuthor">
+                                <span class="SingleBookTitle">@book.TitleOf</span>
+                                <span class="SingleBookAuthor">@book.Author.FullName</span>
+                            </div>
+
+                            <span class="SingleBookPrice">@book.PriceOf $</span>
+                        </div>
+                    </a>
+                </div>
+                
+                
+            }
+        }
+    </div>
+</body>
+</html>

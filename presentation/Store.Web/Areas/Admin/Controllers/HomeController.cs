@@ -21,14 +21,25 @@ namespace Store.Web.Areas.Admin.Controllers
             return View(books);
         }
 
-        public IActionResult AddBook()
+        public async Task<IActionResult> AddBook()
         {
+            AuthorEF[] authors = await bookService.GetAllAuthors();
+            string[] authorsNames = new string[authors.Length];
+
+            for (int i = 0; i < authorsNames.Length; i++)
+            {
+                authorsNames[i] = authors[i].FullName;
+            }
+
+            ViewData["Authors"] = new List<string>(authorsNames);
             return View("BookAdd");
         }
 
-        public async Task Add(string? Genre, string Title, string Isbn, string? Description, string Price, string AuthorFullName)
+        [HttpPost]
+        public async Task<IActionResult> Add(string? Genre, string Title, string Isbn, string? Description, string Price, string authorFullname)
         {
-            await bookService.AddBook(Genre,Title,Isbn,Description,Convert.ToDecimal(Price),AuthorFullName);
+            await bookService.AddBook(Genre, Title, Isbn, Description, Convert.ToDecimal(Price), authorFullname);
+            return RedirectToAction("Index");
         }
 
         public async Task DeleteBook(int id)

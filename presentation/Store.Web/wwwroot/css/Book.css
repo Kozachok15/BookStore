@@ -1,2 +1,96 @@
-﻿body {
+﻿* {
+    box-sizing: border-box; /* Учитывает отступы и границы внутри размеров элемента */
+}
+
+body {
+    margin: 0;
+}
+
+.MainContainer {
+    width: 100%;
+    height: 1000px;
+    position: relative;
+    padding: 4% 15% 0% 15%;
+}
+
+.MainContainer a{
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+}
+
+.Book {
+    display:flex;
+    margin-bottom: 100px;
+    justify-content: space-between;
+}
+
+.BookImg {
+    width: 400px;
+    height: 600px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    background: #f4f4ff;
+}
+
+.BookImg img{
+    transform: scale(2);
+}
+
+.BookText {
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+}
+
+.BookTitleNAuthor {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.BookTitle {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.BookAuthor {
+    font-size: 32px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 50px;
+}
+
+.BookDescription {
+    font-size: 28px;
+    color: rgba(9, 9, 55, 0.6);
+}
+
+.BuyForm {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.MainContainer button {
+    display: flex;
+    justify-content: space-between;
+    background-color: #EF6B4A; /* Оранжевый цвет фона */
+    width: 400px;
+    height: 60px;
+    font-family: 'Manrope', sans-serif;
+    color: white; /* Белый цвет текста */
+    font-size: 24px;
+    border: none; /* Убирает рамки */
+    padding: 10px 30px; /* Добавляет внутренние отступы */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Указатель мыши при наведении */
+    text-decoration: none; /* Убирает подчеркивание текста */
+}
+
+.BookPrice {
+    font-weight: 700;
+}
+
+.MainContainer button:hover {
+    background-color: darkorange; /* Темно-оранжевый цвет при наведении */
 }

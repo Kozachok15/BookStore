@@ -44,10 +44,11 @@ namespace Store
 
         public async Task AddBook(string? Genre, string Title, string Isbn, string? Description, decimal Price, string AuthorFullName)
         {
-            PublisherEF publisher = await booksRepository.GetPublisherById(1);
-            booksRepository.AddAuthor(AuthorFullName);
+            PublisherEF publisher = await booksRepository.GetPublisher();
+            int publisherid = publisher.Id;
             AuthorEF author = await booksRepository.GetAuthorByName(AuthorFullName);
-            booksRepository.AddBook(author, publisher, Genre, Title, Isbn, Description, Price);
+            int authorid = author.Id;
+            booksRepository.AddBook(authorid, publisherid, Genre, Title, Isbn, Description, Price);
         }
 
         public async Task UpdateBook(int id, string Description, string Title, string Genre, decimal Price)
